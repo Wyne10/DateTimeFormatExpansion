@@ -1,5 +1,6 @@
 package me.wyne.dtf;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.wyne.dtf.format.DurationFormat;
 import me.wyne.dtf.format.LocalFormat;
@@ -47,17 +48,16 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
-        var args = new Args(params, "_");
+        var args = new Args(PlaceholderAPI.setBracketPlaceholders(player, params), "_");
         var cleanArgs = args.skip(1);
 
         var type = args.get(0).toUpperCase(Locale.ENGLISH);
-        switch (type) {
-            case "DURATION": return DURATION_FORMAT.format(player, cleanArgs, formats);
-            case "LOCAL": return LOCAL_FORMAT.format(player, cleanArgs, formats);
-            case "ZONED": return ZONED_FORMAT.format(player, cleanArgs, formats);
-        }
-
-        return null;
+        return switch (type) {
+            case "DURATION" -> DURATION_FORMAT.format(player, cleanArgs, formats);
+            case "LOCAL" -> LOCAL_FORMAT.format(player, cleanArgs, formats);
+            case "ZONED" -> ZONED_FORMAT.format(player, cleanArgs, formats);
+            default -> null;
+        };
     }
 
 }

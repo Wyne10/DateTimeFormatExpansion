@@ -65,7 +65,7 @@ public final class LocalFormat implements Format {
             Map.entry("MONTH", TemporalAdjusters.firstDayOfMonth()),
             Map.entry("NEXT-MONTH", TemporalAdjusters.firstDayOfNextMonth()),
             Map.entry("YEAR", TemporalAdjusters.firstDayOfYear()),
-            Map.entry("NEXT_YEAR", TemporalAdjusters.firstDayOfNextYear())
+            Map.entry("NEXT-YEAR", TemporalAdjusters.firstDayOfNextYear())
     );
 
     @Override

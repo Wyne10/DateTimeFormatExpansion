@@ -52,12 +52,18 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
         var cleanArgs = args.skip(1);
 
         var type = args.get(0).toUpperCase(Locale.ENGLISH);
-        return switch (type) {
-            case "DURATION" -> DURATION_FORMAT.format(player, cleanArgs, formats);
-            case "LOCAL" -> LOCAL_FORMAT.format(player, cleanArgs, formats);
-            case "ZONED" -> ZONED_FORMAT.format(player, cleanArgs, formats);
-            default -> null;
-        };
+        try {
+            return switch (type) {
+                case "DURATION" -> DURATION_FORMAT.format(player, cleanArgs, formats);
+                case "LOCAL" -> LOCAL_FORMAT.format(player, cleanArgs, formats);
+                case "ZONED" -> ZONED_FORMAT.format(player, cleanArgs, formats);
+                default -> null;
+            };
+        } catch (Throwable throwable) {
+            severe("Illegal placeholder %dtf_" + params + "%", throwable);
+        }
+
+        return null;
     }
 
 }

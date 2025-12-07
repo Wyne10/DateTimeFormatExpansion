@@ -11,7 +11,7 @@ import java.util.Set;
 
 public final class DurationFormat implements Format {
 
-    public static final Set<String> STATIC_FORMAT = Set.of(
+    public static final Set<String> STATIC_FORMATS = Set.of(
             "HMS",
             "ISO",
             "WORDS",
@@ -26,14 +26,14 @@ public final class DurationFormat implements Format {
         var duration = Durations.getTimeSpan(durationString);
         var format = args.get(1);
 
-        if (STATIC_FORMAT.contains(format)) {
+        if (STATIC_FORMATS.contains(format)) {
             switch (format) {
                 case "HMS": return DurationFormatUtils.formatDurationHMS(duration.getMillis());
                 case "ISO": return DurationFormatUtils.formatDurationISO(duration.getMillis());
                 case "WORDS": return DurationFormatUtils.formatDurationWords(duration.getMillis(), false, false);
                 case "WORDSL": return DurationFormatUtils.formatDurationWords(duration.getMillis(), true, false);
                 case "WORDST": return DurationFormatUtils.formatDurationWords(duration.getMillis(), false, true);
-                case "WORDSLT": return DurationFormatUtils.formatDurationWords(duration.getMillis(), true, true);
+                case "WORDSLT", "WORDSTL": return DurationFormatUtils.formatDurationWords(duration.getMillis(), true, true);
             }
         } else return DurationFormatUtils.formatDuration(duration.getMillis(), formats.getOrDefault(format, format));
 

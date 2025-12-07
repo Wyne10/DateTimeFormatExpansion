@@ -1,6 +1,7 @@
 package me.wyne.dtf.format;
 
 import me.wyne.dtf.Args;
+import me.wyne.dtf.duration.Durations;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.*;
+import java.util.Locale;
 import java.util.Map;
 
 public final class LocalFormat implements Format {
@@ -70,18 +72,26 @@ public final class LocalFormat implements Format {
 
     @Override
     public @NotNull String format(OfflinePlayer player, Args args, Map<String, String> formats) {
-        var adjuster = args.get(0);
+        var adjuster = args.get(0).toUpperCase(Locale.ENGLISH);
         var time = args.get(1);
         var format = args.get(2);
 
         var dateTime = LocalDateTime.now();
-        var adjusted = dateTime.with(STATIC_ADJUSTERS.get(adjuster));
+        if (STATIC_ADJUSTERS.containsKey(adjuster)) {
+            dateTime = dateTime.with(STATIC_ADJUSTERS.get(adjuster));
+        } else {
+            var timeSpan = Durations.getTimeSpan(adjuster);
+            if (adjuster.startsWith("-"))
+                dateTime = dateTime.minus(timeSpan.getMillis(), ChronoUnit.MILLIS);
+            else
+                dateTime = dateTime.plus(timeSpan.getMillis(), ChronoUnit.MILLIS);
+        }
         if (!time.equalsIgnoreCase("NOW"))
-            adjusted = adjusted.with(LocalTime.parse(time));
+            dateTime = dateTime.with(LocalTime.parse(time));
 
         if (STATIC_FORMATTERS.containsKey(format)) {
-            return adjusted.format(STATIC_FORMATTERS.get(format));
-        } else return adjusted.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format)));
+            return dateTime.format(STATIC_FORMATTERS.get(format));
+        } else return dateTime.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format)));
     }
 
 }

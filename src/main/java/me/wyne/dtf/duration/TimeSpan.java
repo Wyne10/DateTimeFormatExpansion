@@ -41,16 +41,16 @@ public record TimeSpan(long duration, Duration type) implements Duration {
         }
 
         long days = millis / (24 * 60 * 60 * 1000);
-        millis %=       24 * 60 * 60 * 1000;
+        millis %= 24 * 60 * 60 * 1000;
 
         long hours = millis / (60 * 60 * 1000);
-        millis %=       60 * 60 * 1000;
+        millis %= 60 * 60 * 1000;
 
         long minutes = millis / (60 * 1000);
-        millis %=       60 * 1000;
+        millis %= 60 * 1000;
 
         long seconds = millis / 1000;
-        millis %=       1000;
+        millis %= 1000;
 
         StringBuilder sb = new StringBuilder();
 

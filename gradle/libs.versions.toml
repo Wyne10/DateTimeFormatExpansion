@@ -1,0 +1,117 @@
+[versions]
+# Plugins
+lombokPluginVersion = "8.14.2" #https://plugins.gradle.org/plugin/io.freefair.lombok (Last version 8)
+shadowPluginVersion = "8.3.9" #https://plugins.gradle.org/plugin/com.gradleup.shadow (Last version 8)
+runPaperPluginVersion = "2.3.1" #https://github.com/jpenilla/run-task (Last java 16 version)
+runPaperForkPluginVersion = "2.3.3" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/xyz/jpenilla/run-paper/
+ymlPluginVersion = "0.6.0" #https://github.com/Minecrell/plugin-yml
+paperweightVersion = "2.0.0-beta.8"
+
+# CompileOnly
+paperApiVersion = "1.16.5-R0.1-SNAPSHOT"
+placeholderApiVersion = "2.11.7" #https://github.com/PlaceholderAPI/PlaceholderAPI
+commandApiVersion = "9.4.2" #https://commandapi.jorel.dev/ (Last 1.16.5 version)
+commandApiKotlinVersion = "11.0.0" #https://mvnrepository.com/artifact/dev.jorel/commandapi-kotlin-paper
+hologramsVersion = "2.9.8" #https://github.com/DecentSoftware-eu/DecentHolograms/releases
+worldEditVersion = "7.2.17" #https://dev.bukkit.org/projects/worldedit/files?filter-game-version=2020709689%3A7915 (Last 1.16.5 version)
+worldGuardVersion = "7.0.5" #https://dev.bukkit.org/projects/worldguard/files?filter-game-version=2020709689%3A7915 (Last 1.16.5 version)
+luckPermsVersion = "5.5" #https://mvnrepository.com/artifact/net.luckperms/api
+protocolLibVersion = "5.4.0" #https://github.com/dmulloy2/ProtocolLib
+nbtApiVersion = "2.15.3" #https://modrinth.com/plugin/nbtapi/versions?g=1.16.5&l=paper
+tabApiVersion = "5.3.2" #https://github.com/NEZNAMY/TAB/wiki/Developer-API
+abstractMenusVersion = "1.16" #https://abstractmenus.github.io/docs/dev/general.html
+
+infPointsVersion = "1.6.1" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/InfPoints-api/
+connectionSourceVersion = "1.0.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/ConnectionSource-api/
+mobMoneyVersion = "1.0.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/MobMoney-api/
+effectiveVersion = "1.0.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/Effective-core/
+customItemsVersion = "1.0.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/CustomItems-core/
+antiRelogVersion = "3.0.11" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/ru/leymooo/antirelog/
+worldEventsVersion = "1.3.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/nevermined/WorldEvents-api/
+worldEventsNotificationsVersion = "1.2.0" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/nevermined/WorldEvents-Notifications-api/
+lootPoolVersion = "1.0.2" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/org/bigcraft/LootPool-api/
+
+# Implementation
+commonsIoVersion = "2.21.0" #https://mvnrepository.com/artifact/commons-io/commons-io
+helperVersion = "5.6.14" #https://github.com/lucko/helper
+triumphGuiVersion = "3.1.13" #https://github.com/TriumphTeam/triumph-gui
+guiceVersion = "7.0.0" #https://github.com/google/guice
+hikariVersion = "7.0.2" #https://github.com/brettwooldridge/HikariCP
+natsVersion = "2.24.1" #https://github.com/nats-io/nats.java
+javatuplesVersion = "1.2" #https://mvnrepository.com/artifact/org.javatuples/javatuples/1.2
+gsonVersion = "2.13.2" #https://mvnrepository.com/artifact/com.google.code.gson/gson
+adventureVersion = "4.25.0" #https://mvnrepository.com/artifact/net.kyori/adventure-api
+adventureBukkitVersion = "4.3.4" #https://mvnrepository.com/artifact/net.kyori/adventure-platform-bukkit
+ormLiteVersion = "6.1" #https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-core
+
+wutilsConfigVersion = "2.9.14" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-config
+wutilsConfigurablesVersion = "1.16.4" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-configurables
+wutilsLogVersion = "3.4.12" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/me/wyne/wutils-log/
+wutilsi18nLegacyVersion = "3.4.1" #https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/me/wyne/wutils-i18n/
+wutilsi18nVersion = "5.2.5" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-i18n
+wutilsCommonVersion = "1.10.4" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-common
+wutilsJdbcVersion = "1.3.0" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-jdbc
+wutilsJsonVersion = "1.2.0" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-json
+wutilsAnimationVersion = "2.0.5" #https://central.sonatype.com/artifact/io.github.wyne10/wutils-animation
+
+[libraries]
+# CompileOnly
+paperApi = { module = "com.destroystokyo.paper:paper-api", version.ref = "paperApiVersion" }
+placeholderApi = { module = "me.clip:placeholderapi", version.ref = "placeholderApiVersion" }
+commandApi = { module = "dev.jorel:commandapi-bukkit-core", version.ref = "commandApiVersion" }
+commandApiKotlin = { module = "dev.jorel:commandapi-kotlin-paper", version.ref = "commandApiKotlinVersion" }
+holograms = { module = "com.github.decentsoftware-eu:decentholograms", version.ref = "hologramsVersion" }
+worldEdit = { module = "com.sk89q.worldedit:worldedit-bukkit", version.ref = "worldEditVersion" }
+worldGuard = { module = "com.sk89q.worldguard:worldguard-bukkit", version.ref = "worldGuardVersion" }
+luckPerms = { module = "net.luckperms:api", version.ref = "luckPermsVersion" } 
+protocolLib = { module = "net.dmulloy2:ProtocolLib", version.ref = "protocolLibVersion" }
+nbtApi = { module = "de.tr7zw:item-nbt-api-plugin", version.ref = "nbtApiVersion" }
+tabApi = { module = "com.github.NEZNAMY:TAB-API", version.ref = "tabApiVersion" }
+abstractMenus = { module = "com.github.AbstractMenus:api", version.ref = "abstractMenusVersion" }
+
+infPoints = { module = "org.bigcraft:InfPoints-api", version.ref = "infPointsVersion" }
+connectionSource = { module = "org.bigcraft:ConnectionSource-api", version.ref = "connectionSourceVersion" }
+mobMoney = { module = "org.bigcraft:MobMoney-api", version.ref = "mobMoneyVersion" }
+effective = { module = "org.bigcraft:Effective-core", version.ref = "effectiveVersion" }
+customItems = { module = "org.bigcraft:CustomItems-core", version.ref = "customItemsVersion" }
+antiRelog = { module = "ru.leymooo:antirelog", version.ref = "antiRelogVersion" }
+worldEvents = { module = "org.nevermined:WorldEvents-api", version.ref = "worldEventsVersion" }
+worldEventsNotifications = { module = "org.nevermined:WorldEvents-Notifications-api", version.ref = "worldEventsNotificationsVersion" }
+lootPool = { module = "org.bigcraft:LootPool-api", version.ref = "lootPoolVersion" }
+
+# Implementation
+commonsIo = { module = "commons-io:commons-io", version.ref = "commonsIoVersion" }
+helper = { module = "me.lucko:helper", version.ref = "helperVersion" }
+triumphGui = { module = "dev.triumphteam:triumph-gui", version.ref = "triumphGuiVersion" }
+guice = { module = "com.google.inject:guice", version.ref = "guiceVersion" }
+guiceAssistedInject = { module = "com.google.inject.extensions:guice-assistedinject", version.ref = "guiceVersion" }
+nats = { module = "io.nats:jnats", version.ref = "natsVersion" }
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikariVersion" }
+javatuples = { module = "org.javatuples:javatuples", version.ref = "javatuplesVersion" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
+adventureApi = { module = "net.kyori:adventure-api", version.ref = "adventureVersion" }
+adventureMini = { module = "net.kyori:adventure-text-minimessage", version.ref = "adventureVersion" }
+adventurePlain = { module = "net.kyori:adventure-text-serializer-plain", version.ref = "adventureVersion" }
+adventureBukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventureBukkitVersion" }
+ormLiteJdbc = { module = "com.j256.ormlite:ormlite-jdbc", version.ref = "ormLiteVersion" }
+ormLiteCore = { module = "com.j256.ormlite:ormlite-core", version.ref = "ormLiteVersion" }
+
+wutilsConfig = { module = "io.github.wyne10:wutils-config", version.ref = "wutilsConfigVersion" }
+wutilsConfigurables = { module = "io.github.wyne10:wutils-configurables", version.ref = "wutilsConfigurablesVersion" }
+wutilsLog = { module = "me.wyne:WUtils-log", version.ref = "wutilsLogVersion" }
+wutilsI18nLegacy = { module = "me.wyne:WUtils-i18n", version.ref = "wutilsi18nLegacyVersion" }
+wutilsI18n = { module = "io.github.wyne10:wutils-i18n", version.ref = "wutilsi18nVersion" }
+wutilsI18nKotlin = { module = "io.github.wyne10:wutils-i18n-kotlin", version.ref = "wutilsi18nVersion" }
+wutilsCommon = { module = "io.github.wyne10:wutils-common", version.ref = "wutilsCommonVersion" }
+wutilsCommonKotlin = { module = "io.github.wyne10:wutils-common-kotlin", version.ref = "wutilsCommonVersion" }
+wutilsJdbc = { module = "io.github.wyne10:wutils-jdbc", version.ref = "wutilsJdbcVersion" }
+wutilsJson = { module = "io.github.wyne10:wutils-json", version.ref = "wutilsJsonVersion" }
+wutilsAnimation = { module = "io.github.wyne10:wutils-animation", version.ref = "wutilsAnimationVersion" }
+
+[plugins]
+lombok = { id = "io.freefair.lombok", version.ref = "lombokPluginVersion" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadowPluginVersion" }
+runPaper = { id = "xyz.jpenilla.run-paper", version.ref = "runPaperPluginVersion" }
+runPaperFork = { id = "xyz.jpenilla.run-paper", version.ref = "runPaperForkPluginVersion" }
+pluginYml = { id = "net.minecrell.plugin-yml.bukkit", version.ref = "ymlPluginVersion" }
+paperweight = { id = "io.papermc.paperweight.userdev", version.ref = "paperweightVersion" }

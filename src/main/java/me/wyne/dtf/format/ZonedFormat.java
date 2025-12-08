@@ -39,7 +39,8 @@ public final class ZonedFormat implements Format {
         var time = args.get(1);
         var zone = args.get(2);
         var format = args.get(3);
-        var locale = args.get(4).isBlank() ? Locale.getDefault() : Locale.forLanguageTag(args.get(4));
+        var localeString = args.get(4);
+        var locale = (!localeString.isBlank() && !localeString.equalsIgnoreCase("NOW")) ? Locale.forLanguageTag(localeString) : Locale.getDefault();
 
         var dateTime = ZonedDateTime.now(zone.equalsIgnoreCase("NOW") ? ZoneId.systemDefault() : ZoneId.of(zone, ZoneId.SHORT_IDS));
         if (LocalFormat.ADJUSTERS.containsKey(adjuster)) {

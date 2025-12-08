@@ -2,10 +2,7 @@ package me.wyne.dtf;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.wyne.dtf.format.DurationFormat;
-import me.wyne.dtf.format.Format;
-import me.wyne.dtf.format.LocalFormat;
-import me.wyne.dtf.format.ZonedFormat;
+import me.wyne.dtf.format.*;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,7 +16,9 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
     private final static Map<String, Format> FORMATTERS = Map.ofEntries(
             Map.entry("DURATION", new DurationFormat()),
             Map.entry("LOCAL", new LocalFormat()),
-            Map.entry("ZONED", new ZonedFormat())
+            Map.entry("ZONED", new ZonedFormat()),
+            Map.entry("LOCAL-FORMAT", new LocalReformat()),
+            Map.entry("ZONED-FORMAT", new ZonedReformat())
     );
 
     private final Map<String, String> formats = new HashMap<>();

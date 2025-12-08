@@ -75,7 +75,8 @@ public final class LocalFormat implements Format {
         var adjuster = args.get(0).toUpperCase(Locale.ENGLISH);
         var time = args.get(1);
         var format = args.get(2);
-        var locale = args.get(3).isBlank() ? Locale.getDefault() : Locale.forLanguageTag(args.get(3));
+        var localeString = args.get(3);
+        var locale = (!localeString.isBlank() && !localeString.equalsIgnoreCase("NOW")) ? Locale.forLanguageTag(localeString) : Locale.getDefault();
 
         var dateTime = LocalDateTime.now();
         if (ADJUSTERS.containsKey(adjuster)) {

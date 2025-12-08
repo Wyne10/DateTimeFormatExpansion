@@ -180,8 +180,8 @@ Format is parsed as described in [Duration Formatting](#1-duration-formatting), 
 
 ### Locale
 
-You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-), defaults to [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--))<br>
-`NOW` → uses [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)
+You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-), defaults to [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--))<br>
+`NOW` → uses [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)
 
 ---
 
@@ -278,7 +278,7 @@ Here you can specify any [format](#format-2) as described in [Zoned DateTime For
 
 ### From locale
 
-Expects a [locale](#locale) matching provided [date-time](#datetime) locale (defaults to [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)).
+Expects a [locale](#locale) matching provided [date-time](#datetime) locale (defaults to [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)).
 
 ### To locale
 

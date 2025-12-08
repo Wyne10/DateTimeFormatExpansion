@@ -3,6 +3,7 @@ package me.wyne.dtf;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.wyne.dtf.format.DurationFormat;
+import me.wyne.dtf.format.Format;
 import me.wyne.dtf.format.LocalFormat;
 import me.wyne.dtf.format.ZonedFormat;
 import org.bukkit.OfflinePlayer;
@@ -15,9 +16,11 @@ import java.util.Map;
 
 public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
-    private final static DurationFormat DURATION_FORMAT = new DurationFormat();
-    private final static LocalFormat LOCAL_FORMAT = new LocalFormat();
-    private final static ZonedFormat ZONED_FORMAT = new ZonedFormat();
+    private final static Map<String, Format> FORMATTERS = Map.ofEntries(
+            Map.entry("DURATION", new DurationFormat()),
+            Map.entry("LOCAL", new LocalFormat()),
+            Map.entry("ZONED", new ZonedFormat())
+    );
 
     private final Map<String, String> formats = new HashMap<>();
 
@@ -53,12 +56,7 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
         var type = args.get(0).toUpperCase(Locale.ENGLISH);
         try {
-            return switch (type) {
-                case "DURATION" -> DURATION_FORMAT.format(player, cleanArgs, formats);
-                case "LOCAL" -> LOCAL_FORMAT.format(player, cleanArgs, formats);
-                case "ZONED" -> ZONED_FORMAT.format(player, cleanArgs, formats);
-                default -> null;
-            };
+            FORMATTERS.get(type).format(player, cleanArgs, formats);
         } catch (Throwable throwable) {
             severe("Illegal placeholder %dtf_" + params + "%", throwable);
         }

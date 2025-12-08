@@ -15,7 +15,7 @@ import java.util.Map;
 
 public final class LocalFormat implements Format {
 
-    public static final Map<String, DateTimeFormatter> STATIC_FORMATTERS = Map.ofEntries(
+    public static final Map<String, DateTimeFormatter> FORMATTERS = Map.ofEntries(
             Map.entry("BASIC-ISO-DATE", DateTimeFormatter.BASIC_ISO_DATE),
             Map.entry("ISO-LOCAL-DATE", DateTimeFormatter.ISO_LOCAL_DATE),
             Map.entry("ISO-DATE", DateTimeFormatter.ISO_DATE),
@@ -27,7 +27,7 @@ public final class LocalFormat implements Format {
             Map.entry("ISO-WEEK-DATE", DateTimeFormatter.ISO_WEEK_DATE)
     );
 
-    public static final Map<String, TemporalAdjuster> STATIC_ADJUSTERS = Map.ofEntries(
+    public static final Map<String, TemporalAdjuster> ADJUSTERS = Map.ofEntries(
             Map.entry("NOW", temporal -> temporal),
             Map.entry("PREVIOUS-MONDAY", TemporalAdjusters.previous(DayOfWeek.MONDAY)),
             Map.entry("PREVIOUS-TUESDAY", TemporalAdjusters.previous(DayOfWeek.TUESDAY)),
@@ -77,8 +77,8 @@ public final class LocalFormat implements Format {
         var format = args.get(2);
 
         var dateTime = LocalDateTime.now();
-        if (STATIC_ADJUSTERS.containsKey(adjuster)) {
-            dateTime = dateTime.with(STATIC_ADJUSTERS.get(adjuster));
+        if (ADJUSTERS.containsKey(adjuster)) {
+            dateTime = dateTime.with(ADJUSTERS.get(adjuster));
         } else {
             var timeSpan = Durations.getTimeSpan(adjuster);
             if (adjuster.startsWith("-"))
@@ -89,8 +89,8 @@ public final class LocalFormat implements Format {
         if (!time.equalsIgnoreCase("NOW"))
             dateTime = dateTime.with(LocalTime.parse(time));
 
-        if (STATIC_FORMATTERS.containsKey(format)) {
-            return dateTime.format(STATIC_FORMATTERS.get(format));
+        if (FORMATTERS.containsKey(format)) {
+            return dateTime.format(FORMATTERS.get(format));
         } else return dateTime.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format)));
     }
 

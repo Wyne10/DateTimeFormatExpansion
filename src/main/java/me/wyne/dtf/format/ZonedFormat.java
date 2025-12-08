@@ -15,7 +15,7 @@ import java.util.Map;
 
 public final class ZonedFormat implements Format {
 
-    public static final Map<String, DateTimeFormatter> STATIC_FORMATTERS = Map.ofEntries(
+    public static final Map<String, DateTimeFormatter> FORMATTERS = Map.ofEntries(
             Map.entry("BASIC-ISO-DATE", DateTimeFormatter.BASIC_ISO_DATE),
             Map.entry("ISO-LOCAL-DATE", DateTimeFormatter.ISO_LOCAL_DATE),
             Map.entry("ISO-OFFSET-DATE", DateTimeFormatter.ISO_OFFSET_DATE),
@@ -41,8 +41,8 @@ public final class ZonedFormat implements Format {
         var format = args.get(3);
 
         var dateTime = ZonedDateTime.now(zone.equalsIgnoreCase("NOW") ? ZoneId.systemDefault() : ZoneId.of(zone, ZoneId.SHORT_IDS));
-        if (LocalFormat.STATIC_ADJUSTERS.containsKey(adjuster)) {
-            dateTime = dateTime.with(LocalFormat.STATIC_ADJUSTERS.get(adjuster));
+        if (LocalFormat.ADJUSTERS.containsKey(adjuster)) {
+            dateTime = dateTime.with(LocalFormat.ADJUSTERS.get(adjuster));
         } else {
             var timeSpan = Durations.getTimeSpan(adjuster);
             if (adjuster.startsWith("-"))
@@ -53,8 +53,8 @@ public final class ZonedFormat implements Format {
         if (!time.equalsIgnoreCase("NOW"))
             dateTime = dateTime.with(LocalTime.parse(time));
 
-        if (STATIC_FORMATTERS.containsKey(format)) {
-            return dateTime.format(STATIC_FORMATTERS.get(format));
+        if (FORMATTERS.containsKey(format)) {
+            return dateTime.format(FORMATTERS.get(format));
         } else return dateTime.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format)));
     }
 

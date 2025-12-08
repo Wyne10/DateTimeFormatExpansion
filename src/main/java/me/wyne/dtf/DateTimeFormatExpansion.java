@@ -56,7 +56,7 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
         var type = args.get(0).toUpperCase(Locale.ENGLISH);
         try {
-            FORMATTERS.get(type).format(player, cleanArgs, formats);
+            return FORMATTERS.get(type).format(player, cleanArgs, formats);
         } catch (Throwable throwable) {
             severe("Illegal placeholder %dtf_" + params + "%", throwable);
         }

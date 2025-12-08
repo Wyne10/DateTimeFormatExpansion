@@ -39,6 +39,7 @@ public final class ZonedFormat implements Format {
         var time = args.get(1);
         var zone = args.get(2);
         var format = args.get(3);
+        var locale = args.get(4).isBlank() ? Locale.getDefault() : Locale.forLanguageTag(args.get(4));
 
         var dateTime = ZonedDateTime.now(zone.equalsIgnoreCase("NOW") ? ZoneId.systemDefault() : ZoneId.of(zone, ZoneId.SHORT_IDS));
         if (LocalFormat.ADJUSTERS.containsKey(adjuster)) {
@@ -54,8 +55,8 @@ public final class ZonedFormat implements Format {
             dateTime = dateTime.with(LocalTime.parse(time));
 
         if (FORMATTERS.containsKey(format)) {
-            return dateTime.format(FORMATTERS.get(format));
-        } else return dateTime.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format)));
+            return dateTime.format(FORMATTERS.get(format).withLocale(locale));
+        } else return dateTime.format(DateTimeFormatter.ofPattern(formats.getOrDefault(format, format), locale));
     }
 
 }

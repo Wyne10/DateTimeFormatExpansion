@@ -17,8 +17,7 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
             Map.entry("DURATION", new DurationFormat()),
             Map.entry("LOCAL", new LocalFormat()),
             Map.entry("ZONED", new ZonedFormat()),
-            Map.entry("LOCAL-FORMAT", new LocalReformat()),
-            Map.entry("ZONED-FORMAT", new ZonedReformat())
+            Map.entry("FORMAT", new Reformat())
     );
 
     private final Map<String, String> formats = new HashMap<>();

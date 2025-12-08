@@ -6,6 +6,7 @@ Format durations and local/zoned date-times via [PlaceholderAPI](https://github.
 %dtf_duration_<duration>_<format>%
 %dtf_local_<adjuster>_<time>_<format>_[locale]%
 %dtf_zoned_<adjuster>_<time>_<zone>_<format>_[locale]%
+%dtf_format_<datetime>_<from>_<to>_[from-locale]_[to-locale]_[zone]%
 ```
 
 ---
@@ -179,7 +180,8 @@ Format is parsed as described in [Duration Formatting](#1-duration-formatting), 
 
 ### Locale
 
-You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-))
+You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-), defaults to [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--))<br>
+`NOW` → uses [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)
 
 ---
 
@@ -240,6 +242,54 @@ See [Local DateTime Locale](#locale)
 
 ---
 
+## 4. Reformatting
+
+You can also **re**format local and zoned date-times.
+
+**Syntax:**
+
+```
+%dtf_format_<datetime>_<from>_<to>_[from-locale]_[to-locale]_[zone]%
+```
+
+### Datetime
+
+Expects a date-time string such as:
+
+* Mon, 8 Dec 2025 23:01:16 +0500
+* 2025-12-08T22:04:06.034735454+04:00[Asia/Yerevan]
+* 2025-12-08
+* 22:04:26.733221114
+* 8-Dec-2025
+
+### From
+
+Expects a [format](#format-2) matching provided [date-time](#datetime), for example:
+
+* Mon, 8 Dec 2025 23:01:16 +0500 → `RFC-1123-DATE-TIME`
+* 2025-12-08T22:04:06.034735454+04:00[Asia/Yerevan] → `ISO-DATE-TIME`
+* 2025-12-08 → `ISO-LOCAL-DATE`
+* 22:04:26.733221114 → `ISO-LOCAL-TIME`
+* 8-Dec-2025 → `d-MMM-yyyy`
+
+### To
+
+Here you can specify any [format](#format-2) as described in [Zoned DateTime Format](#format-2)
+
+### From locale
+
+Expects a [locale](#locale) matching provided [date-time](#datetime) locale (defaults to [default locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)).
+
+### To locale
+
+Overrides [date-time](#datetime) [locale](#locale) (doesn't do anything if not specified).
+
+### Zone
+
+Overrides [time zone](#zone) (keeps original time zone if not specified).
+
+---
+
 # ❕ Notes
 
 * Before formatting anything dtf will set **Bracket** placeholders inside itself, that way you can provide data from other placeholders.
@@ -250,3 +300,4 @@ See [Local DateTime Locale](#locale)
 * `%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%` (when 2025.12.08) -> 2025-12-15
 * `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%` -> Mon, 8 Dec 2025 09:50:55 GMT
 * `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%` -> 8-12月-2025
+* `%dtf_format_{dtf_zoned_now_now_NET_ISO-DATE-TIME}_ISO-DATE-TIME_RFC-1123-DATE-TIME_now_now_GMT+5%` ([dtf_zoned](#3-zoned-datetime-formatting) is used for demonstration purposes) → 2025-12-08T22:27:10.333235773+04:00[Asia/Yerevan] → Mon, 8 Dec 2025 23:27:10 +0500

@@ -4,8 +4,8 @@ Format durations and local/zoned date-times via [PlaceholderAPI](https://github.
 
 ```
 %dtf_duration_<duration>_<format>%
-%dtf_local_<adjuster>_<time>_<format>%
-%dtf_zoned_<adjuster>_<time>_<zone>_<format>%
+%dtf_local_<adjuster>_<time>_<format>_[locale]%
+%dtf_zoned_<adjuster>_<time>_<zone>_<format>_[locale]%
 ```
 
 ---
@@ -64,14 +64,14 @@ And then addressed by key:
 
 There is also a bunch of predefined formats **case-sensitive** (addressed by key):
 
-| Key       | Maps to                                                                                                                                                                                         |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `HMS`     | [`01:23:00.000`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationHMS(long))                                         |
-| `ISO`     | [`P0Y0M0DT1H23M0.000S`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationISO(long))                                  |
-| `WORDS`   | [`0 days 1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean)) |
-| `WORDSL`  | [`1 hours 23 minutess 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))      |
-| `WORDST`  | [`0 days 1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))           |
-| `WORDSLT` | [`1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))                  |
+| Key                  | Maps to                                                                                                                                                                                         |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HMS`                | [`01:23:00.000`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationHMS(long))                                         |
+| `ISO`                | [`P0Y0M0DT1H23M0.000S`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationISO(long))                                  |
+| `WORDS`              | [`0 days 1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean)) |
+| `WORDSL`             | [`1 hours 23 minutess 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))      |
+| `WORDST`             | [`0 days 1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))           |
+| `WORDSLT`, `WORDSTL` | [`1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))                  |
 
 Format is applied using [Apache DurationFormatUtils](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html)
 
@@ -82,7 +82,7 @@ Format is applied using [Apache DurationFormatUtils](https://commons.apache.org/
 **Syntax:**
 
 ```
-%dtf_local_<adjuster>_<time>_<format>%
+%dtf_local_<adjuster>_<time>_<format>_[locale]%
 ```
 
 ### Adjuster
@@ -141,7 +141,7 @@ You can adjust using [durations](#duration) (can be negative) or predefined adju
 
 ### Time
 
-Sets time<br>
+Sets time.<br>
 Use either **case-insensitive**:
 
 * `NOW` → keep system time
@@ -177,6 +177,10 @@ Format is parsed as described in [Duration Formatting](#1-duration-formatting), 
 | `ISO-ORDINAL-DATE`    | [`yyyy-D`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_ORDINAL_DATE)                     |
 | `ISO-WEEK-DATE`       | [`yyyy-Ww-e`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_WEEK_DATE)                     |
 
+### Locale
+
+You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-))
+
 ---
 
 ## 3. Zoned DateTime Formatting
@@ -184,7 +188,7 @@ Format is parsed as described in [Duration Formatting](#1-duration-formatting), 
 **Syntax:**
 
 ```
-%dtf_zoned_<adjuster>_<time>_<zone>_<format>%
+%dtf_zoned_<adjuster>_<time>_<zone>_<format>_[locale]%
 ```
 
 ### Adjuster
@@ -210,32 +214,39 @@ Zone id is defined as described in https://docs.oracle.com/javase/8/docs/api/jav
 
 ### Format
 
-| Name                 |
-| -------------------- |
-| BASIC-ISO-DATE       |
-| ISO-LOCAL-DATE       |
-| ISO-OFFSET-DATE      |
-| ISO-DATE             |
-| ISO-LOCAL-TIME       |
-| ISO-OFFSET-TIME      |
-| ISO-TIME             |
-| ISO-LOCAL-DATE-TIME  |
-| ISO-OFFSET-DATE-TIME |
-| ISO-ZONED-DATE-TIME  |
-| ISO-DATE-TIME        |
-| ISO-ORDINAL-DATE     |
-| ISO-WEEK-DATE        |
-| ISO-INSTANT          |
-| RFC-1123-DATE-TIME   |
+Format is parsed as described in [Duration Formatting](#1-duration-formatting), but predefined formatters are different **case-sensitive**:
+
+| Key                    | Maps to                                                                                                                                                        |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `BASIC-ISO-DATE`       | [`yyyyMMdd+HHmmss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#BASIC_ISO_DATE)                                          |
+| `ISO-LOCAL-DATE`       | [`yyyy-MM-dd`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE)                                               |
+| `ISO-OFFSET-DATE`      | [`yyyy-MM-dd+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_OFFSET_DATE)                                     |
+| `ISO-DATE`             | [`yyyy-MM-dd+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE)                                            |
+| `ISO-LOCAL-TIME`       | [`HH:mm:ss.SSS`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_TIME)                                             |
+| `ISO-OFFSET-TIME`      | [`HH:mm:ss.SSS+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_OFFSET_TIME)                                   |
+| `ISO-TIME`             | [`HH:mm:ss.SSS+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_TIME)                                          |
+| `ISO-LOCAL-DATE-TIME`  | [`yyyy-MM-ddTHH:mm:ss.SSS`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME)                             |
+| `ISO-OFFSET-DATE-TIME` | [`yyyy-MM-ddTHH:mm:ss.SSS+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_OFFSET_DATE_TIME)                   |
+| `ISO-ZONED-DATE-TIME`  | [`yyyy-MM-ddTHH:mm:ss.SSS+HH:mm:ss[ZoneId/ZoneOffset]`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_ZONED_DATE_TIME) |
+| `ISO-DATE-TIME`        | [`yyyy-MM-ddTHH:mm:ss.SSS+HH:mm:ss[ZoneId/ZoneOffset]`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME)       |
+| `ISO-ORDINAL-DATE`     | [`yyyy-D+HH:mm:ss`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_ORDINAL_DATE)                                        |
+| `ISO-WEEK-DATE`        | [`yyyy-Ww-e`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_WEEK_DATE)                                                 |
+| `ISO-INSTANT`          | [`yyyy-MM-ddTHH:mm:ss.SSSZ`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_INSTANT)                                    |
+| `RFC-1123-DATE-TIME`   | [`EEE, dd MMM yyyy HH:mm:ss ZoneId/ZoneOffset`](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#RFC_1123_DATE_TIME)          |
+
+### Locale
+
+See [Local DateTime Locale](#locale)
 
 ---
 
+# ❕ Notes
+
+* Before formatting anything dtf will set **Bracket** placeholders inside itself, that way you can provide data from other placeholders.
+
 # ✅ Examples
 
-```
-%dtf_duration_5m30s_HMS%
-%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%
-%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%
-%dtf_local_NOW_14:00_my-custom-format%
-%dtf_duration_1h30m_"mm 'minutes'"%
-```
+* `%dtf_duration_5m30s_HMS%` → 0:05:30.000
+* `%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%` (when 2025.12.08) -> 2025-12-15
+* `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%` -> Mon, 8 Dec 2025 09:50:55 GMT
+* `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%` -> 8-12月-2025

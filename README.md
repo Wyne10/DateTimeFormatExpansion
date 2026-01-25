@@ -180,8 +180,8 @@ Format is parsed as described in [Duration Formatting](#1-duration-formatting), 
 
 ### Locale
 
-You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-), defaults to [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--))<br>
-`NOW` → uses [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)
+You can also specify optional formatter locale as [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (parsed using [`Locale.forLanguageTag(String languageTag)`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#forLanguageTag-java.lang.String-), defaults to [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--))<br><br>
+`NOW` or blank → uses [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)
 
 ---
 
@@ -282,7 +282,7 @@ Expects a [locale](#locale) matching provided [date-time](#datetime) locale (def
 
 ### To locale
 
-Overrides [date-time](#datetime) [locale](#locale) (doesn't do anything if not specified).
+Overrides [date-time](#datetime) [locale](#locale) (defaults to [Locale.getDefault()](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--)).
 
 ### Zone
 
@@ -300,4 +300,4 @@ Overrides [time zone](#zone) (keeps original time zone if not specified).
 * `%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%` (when 2025.12.08) -> 2025-12-15
 * `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%` -> Mon, 8 Dec 2025 09:50:55 GMT
 * `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%` -> 8-12月-2025
-* `%dtf_format_{dtf_zoned_now_now_NET_ISO-DATE-TIME}_ISO-DATE-TIME_RFC-1123-DATE-TIME_now_now_GMT+5%` ([dtf_zoned](#3-zoned-datetime-formatting) is used for demonstration purposes) → 2025-12-08T22:27:10.333235773+04:00[Asia/Yerevan] → Mon, 8 Dec 2025 23:27:10 +0500
+* `%dtf_format_{dtf_zoned_NOW_NOW_NET_ISO-DATE-TIME}_ISO-DATE-TIME_RFC-1123-DATE-TIME_NOW_NOW_GMT+5%` ([dtf_zoned](#3-zoned-datetime-formatting) is used for demonstration purposes) → 2025-12-08T22:27:10.333235773+04:00[Asia/Yerevan] → Mon, 8 Dec 2025 23:27:10 +0500

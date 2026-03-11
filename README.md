@@ -164,7 +164,7 @@ Examples:
 
 ### Format
 
-Format is parsed as described in [Duration Formatting](#1-duration-formatting), but predefined formatters are different **case-sensitive**:
+Format is parsed as described in [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ofPattern-java.lang.String-), there is also a bunch of predefined formats **case-sensitive**:
 
 | Key                   | Maps to                                                                                                                            |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -216,7 +216,7 @@ Zone id is defined as described in https://docs.oracle.com/javase/8/docs/api/jav
 
 ### Format
 
-Format is parsed as described in [Duration Formatting](#1-duration-formatting), but predefined formatters are different **case-sensitive**:
+Format is parsed as described in [Local DateTime Formatting](#format-1), but predefined formatters are different **case-sensitive**:
 
 | Key                    | Maps to                                                                                                                                                        |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|

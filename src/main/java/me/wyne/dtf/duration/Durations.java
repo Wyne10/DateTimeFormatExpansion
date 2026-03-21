@@ -40,11 +40,15 @@ public final class Durations {
         return DURATION_TO_SYMBOL.get(duration);
     }
 
+    @Nullable
     public static TimeSpan getTimeSpan(String string) {
-        return new TimeSpan(getMillis(string), Millis);
+        var millis = getMillis(string);
+        if (millis == null) return null;
+        return new TimeSpan(millis, Millis);
     }
 
-    public static long getMillis(String string) {
+    @Nullable
+    public static Long getMillis(String string) {
         Matcher matcher = DURATION_REGEX.matcher(string);
         long totalMillis = 0;
 
@@ -56,15 +60,16 @@ public final class Durations {
             totalMillis += duration.getMillis(amount);
         }
 
-        if (!found) {
-            throw new IllegalArgumentException("Invalid duration: " + string);
-        }
+        if (!found) return null;
 
         return totalMillis;
     }
 
-    public static long getTicks(String string) {
-        return getTimeSpan(string).getTicks();
+    @Nullable
+    public static Long getTicks(String string) {
+        var timeSpan = getTimeSpan(string);
+        if (timeSpan == null) return null;
+        return timeSpan.getTicks();
     }
 
 }

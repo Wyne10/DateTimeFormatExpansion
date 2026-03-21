@@ -24,6 +24,7 @@ public final class DurationFormat implements Format {
     public @Nullable String format(OfflinePlayer player, Args args, Map<String, String> formats) {
         var durationString = args.get(0);
         var duration = Durations.getTimeSpan(durationString);
+        if (duration == null) return durationString;
         var format = args.get(1);
 
         if (FORMATS.contains(format)) {

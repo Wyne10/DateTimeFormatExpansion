@@ -83,10 +83,12 @@ public final class LocalFormat implements Format {
             dateTime = dateTime.with(ADJUSTERS.get(adjuster));
         } else {
             var timeSpan = Durations.getTimeSpan(adjuster);
-            if (adjuster.startsWith("-"))
-                dateTime = dateTime.minus(timeSpan.getMillis(), ChronoUnit.MILLIS);
-            else
-                dateTime = dateTime.plus(timeSpan.getMillis(), ChronoUnit.MILLIS);
+            if (timeSpan != null) {
+                if (adjuster.startsWith("-"))
+                    dateTime = dateTime.minus(timeSpan.getMillis(), ChronoUnit.MILLIS);
+                else
+                    dateTime = dateTime.plus(timeSpan.getMillis(), ChronoUnit.MILLIS);
+            }
         }
         if (!time.equalsIgnoreCase("NOW"))
             dateTime = dateTime.with(LocalTime.parse(time));

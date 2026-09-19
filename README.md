@@ -70,7 +70,7 @@ There is also a bunch of predefined formats **case-sensitive** (addressed by key
 | `HMS`                | [`01:23:00.000`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationHMS(long))                                         |
 | `ISO`                | [`P0Y0M0DT1H23M0.000S`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationISO(long))                                  |
 | `WORDS`              | [`0 days 1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean)) |
-| `WORDSL`             | [`1 hours 23 minutess 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))      |
+| `WORDSL`             | [`1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))      |
 | `WORDST`             | [`0 days 1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))           |
 | `WORDSLT`, `WORDSTL` | [`1 hour 23 minutes`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))                  |
 
@@ -136,7 +136,7 @@ You can adjust using [durations](#duration) (can be negative) or predefined adju
 | `MONTH`                      | First day of the current month               |
 | `NEXT-MONTH`                 | First day of next month                      |
 | `YEAR`                       | First day of the current year                |
-| `NEXT_YEAR`                  | First day of next year                       |
+| `NEXT-YEAR`                  | First day of next year                       |
 
 </details>
 
@@ -296,7 +296,7 @@ Overrides [time zone](#zone) (keeps original time zone if not specified).
 
 # ✅ Examples
 
-* `%dtf_duration_5m30s_HMS%` → 0:05:30.000
+* `%dtf_duration_5m30s_HMS%` → 00:05:30.000
 * `%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%` (when 2025.12.08) -> 2025-12-15
 * `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%` -> Mon, 8 Dec 2025 09:50:55 GMT
 * `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%` -> 8-12月-2025

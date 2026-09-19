@@ -3,7 +3,9 @@ package me.wyne.dtf;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 public class Args {
 
@@ -25,6 +27,23 @@ public class Args {
 
     private Args(List<String> args) {
         this.args = args;
+    }
+
+    public static Args splitOutsideBrackets(String string, char delimiter, UnaryOperator<String> mapper) {
+        var split = new ArrayList<String>();
+        var depth = 0;
+        var start = 0;
+        for (var i = 0; i < string.length(); i++) {
+            var c = string.charAt(i);
+            if (c == '{') depth++;
+            else if (c == '}' && depth > 0) depth--;
+            else if (c == delimiter && depth == 0) {
+                split.add(mapper.apply(string.substring(start, i)));
+                start = i + 1;
+            }
+        }
+        split.add(mapper.apply(string.substring(start)));
+        return new Args(List.copyOf(split));
     }
 
     @Nullable

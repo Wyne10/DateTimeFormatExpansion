@@ -34,7 +34,7 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.1.0";
+        return "1.1.2";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DateTimeFormatExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
-        var args = new Args(PlaceholderAPI.setBracketPlaceholders(player, params), "_");
+        var args = Args.splitOutsideBrackets(params, '_', arg -> PlaceholderAPI.setBracketPlaceholders(player, arg));
         var cleanArgs = args.skip(1);
 
         var type = args.get(0).toUpperCase(Locale.ENGLISH);

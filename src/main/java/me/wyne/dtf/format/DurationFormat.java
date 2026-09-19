@@ -17,7 +17,8 @@ public final class DurationFormat implements Format {
             "WORDS",
             "WORDSL",
             "WORDST",
-            "WORDSLT"
+            "WORDSLT",
+            "WORDSTL"
     );
 
     @Override

@@ -1,6 +1,7 @@
 # DateTimeFormatExpansion (dtf)
 
 Format durations and local/zoned date-times via [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI)
+<br>Complete wiki at [GitBook](https://wyne.gitbook.io/wyne-docs/datetimeformatexpansion)
 
 ```
 %dtf_duration_<duration>_<format>%

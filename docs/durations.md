@@ -71,20 +71,20 @@ These keys are case-sensitive. The examples show 1 hour and 23 minutes:
 
 | Key                  | Shows                                |
 | -------------------- | ------------------------------------ |
-| `HMS`                | `01:23:00.000`                       |
+| `HMS`                | `1:23:00.000`                        |
 | `ISO`                | `P0Y0M0DT1H23M0.000S`                |
 | `WORDS`              | `0 days 1 hour 23 minutes 0 seconds` |
 | `WORDSL`             | `1 hour 23 minutes 0 seconds`        |
 | `WORDST`             | `0 days 1 hour 23 minutes`           |
 | `WORDSLT`, `WORDSTL` | `1 hour 23 minutes`                  |
 
-In the `WORDS` family, `L` drops the zero units at the start and `T` drops those at the end. The words are always English; for another language, write a pattern with the words in quotes.
+`HMS` doesn't pad the hours; for `01:23:00`, use the pattern `HH:mm:ss`. In the `WORDS` family, `L` drops the zero units at the start and `T` drops those at the end. The words are always English; for another language, write a pattern with the words in quotes.
 
 ## Examples
 
 | Placeholder                                         | Shows                                    |
 | --------------------------------------------------- | ---------------------------------------- |
-| `%dtf_duration_5m30s_HMS%`                          | `00:05:30.000`                           |
+| `%dtf_duration_5m30s_HMS%`                          | `0:05:30.000`                            |
 | `%dtf_duration_5400_mm:ss%`                         | `04:30`                                  |
 | `%dtf_duration_10t_ss.SSS%`                         | `00.500`                                 |
 | `%dtf_duration_{effect_vip-day_remaining}_WORDSLT%` | `1 hour 23 minutes`, with that long left |

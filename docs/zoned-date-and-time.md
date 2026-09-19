@@ -13,10 +13,10 @@ description: >-
 Works like [`%dtf_local_…%`](local-date-and-time.md), with one more argument: the time zone. The current date and time are taken in that zone, then moved and formatted the same way. `<adjuster>`, `<time>` and `<locale>` are exactly as described there.
 
 ```
-%dtf_zoned_NOW_NOW_America/New_York_HH:mm%
+%dtf_zoned_NOW_NOW_Asia/Tokyo_HH:mm%
 ```
 
-shows the time in New York, whatever the server's own zone is.
+shows the time in Tokyo, whatever the server's own zone is.
 
 ## Zone
 
@@ -28,6 +28,10 @@ shows the time in New York, whatever the server's own zone is.
 | A short ID, such as `EST` or `CET`               | Java's [short zone IDs](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html#SHORT_IDS).                                  |
 
 Zones are case-sensitive: `Europe/Berlin`, not `europe/berlin`. An unknown zone is an error—see [When something is wrong](formats-and-nesting.md#when-something-is-wrong).
+
+{% hint style="warning" %}
+A region with `_` in its name, such as `America/New_York` or `America/Los_Angeles`, can't be used: the `_` splits it into two arguments. Pick another region in the same zone instead—`America/Toronto` keeps New York's time, daylight saving included, and `America/Vancouver` keeps Los Angeles's.
+{% endhint %}
 
 ## Format
 
@@ -59,5 +63,6 @@ The predefined formats include the zone. The examples show 8 December 2025, 22:0
 | ------------------------------------------------- | ------------------------------ |
 | `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%`      | `Mon, 8 Dec 2025 18:04:06 GMT` |
 | `%dtf_zoned_NOW_NOW_Europe/Berlin_HH:mm%`         | `19:04`                        |
+| `%dtf_zoned_NOW_NOW_America/Toronto_HH:mm%`       | `13:04`, New York's time       |
 | `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%`           | `8-12月-2025`                   |
 | `%dtf_zoned_NEXT-SATURDAY_18:00_UTC_ISO-INSTANT%` | `2025-12-13T18:00:00Z`         |

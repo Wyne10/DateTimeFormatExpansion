@@ -6,7 +6,7 @@ description: >-
 
 # DateTimeFormatExpansion
 
-DateTimeFormatExpansion, `dtf` for short, is a [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) expansion for showing time. It turns the `5400` ticks another plugin reports into `04:30`, shows next Saturday's event date in each player's language, the time in New York, or a date another plugin prints in a format your players can read.
+DateTimeFormatExpansion, `dtf` for short, is a [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) expansion for showing time. It turns the `5400` ticks another plugin reports into `04:30`, shows next Saturday's event date in each player's language, the time in Tokyo, or a date another plugin prints in a format your players can read.
 
 ## Placeholders
 

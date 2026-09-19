@@ -68,7 +68,7 @@ There is also a bunch of predefined formats **case-sensitive** (addressed by key
 
 | Key                  | Maps to                                                                                                                                                                                         |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `HMS`                | [`01:23:00.000`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationHMS(long))                                         |
+| `HMS`                | [`1:23:00.000`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationHMS(long))                                         |
 | `ISO`                | [`P0Y0M0DT1H23M0.000S`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationISO(long))                                  |
 | `WORDS`              | [`0 days 1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean)) |
 | `WORDSL`             | [`1 hour 23 minutes 0 seconds`](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/time/DurationFormatUtils.html#formatDurationWords(long,boolean,boolean))      |
@@ -211,9 +211,12 @@ Zone id is defined as described in https://docs.oracle.com/javase/8/docs/api/jav
 * `NOW` → uses system default timezone
 * `UTC`
 * `GMT+5`
-* `America/New_York`
+* `America/Toronto`
 * `Europe/Berlin`
 * `CET`, `EST`, etc.
+
+Zone ids containing `_`, such as `America/New_York`, can't be used, since `_` separates arguments.<br>
+Use another id for the same zone instead, such as `America/Toronto` for New York time.
 
 ### Format
 
@@ -297,7 +300,7 @@ Overrides [time zone](#zone) (keeps original time zone if not specified).
 
 # ✅ Examples
 
-* `%dtf_duration_5m30s_HMS%` → 00:05:30.000
+* `%dtf_duration_5m30s_HMS%` → 0:05:30.000
 * `%dtf_local_NEXT-MONDAY_NOW_ISO-LOCAL-DATE%` (when 2025.12.08) -> 2025-12-15
 * `%dtf_zoned_NOW_NOW_UTC_RFC-1123-DATE-TIME%` -> Mon, 8 Dec 2025 09:50:55 GMT
 * `%dtf_zoned_NOW_NOW_NOW_d-MMM-yyyy_ja%` -> 8-12月-2025
